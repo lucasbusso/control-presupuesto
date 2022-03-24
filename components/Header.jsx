@@ -19,4 +19,4 @@ const Header = ({presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPres
   )
 }
 
-export default Header
+export default Header 
