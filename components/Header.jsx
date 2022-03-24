@@ -16,8 +16,11 @@ const Header = ({presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPres
         )}
         
 
+
         
+
         
+
     </header>
   )
 }
