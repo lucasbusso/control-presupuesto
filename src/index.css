@@ -145,8 +145,8 @@ header h1 {
     border-left: 5px solid #eb1414;
     color: #ec2424;
 }
-.alerta.success {
-}
+/* .alerta.success {
+} */
 
 .contenedor {
     width: 90%;
@@ -350,6 +350,9 @@ main {
 }
 .modal .cerrar-modal img {
     width: 100%;
+}
+.modal .cerrar-modal img:hover{
+    cursor:pointer;
 }
 
 .modal .formulario {
