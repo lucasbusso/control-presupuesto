@@ -1,12 +1,16 @@
 import React from 'react'
 import NuevoPresupuesto from './NuevoPresupuesto'
+import ControlPresupuesto from './ControlPresupuesto'
+
 const Header = ({presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPresupuesto}) => {
   return (
     <header>
         <h1>Planificador de gastos</h1>
 
         { isValidPresupuesto ? (
-            <p>Control presupuesto</p>
+            <ControlPresupuesto 
+            presupuesto={presupuesto}
+            />
         ) : ( 
             < NuevoPresupuesto 
                 presupuesto={presupuesto}
@@ -14,17 +18,6 @@ const Header = ({presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPres
                 setIsValidPresupuesto={setIsValidPresupuesto}
         />
         )}
-        
-
-          <h2>hola</h2>
-
-
-        
-
-        
-
-
-
     </header>
   )
 }

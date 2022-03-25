@@ -32,8 +32,9 @@ const NuevoPresupuesto = ({ presupuesto, setPresupuesto, setIsValidPresupuesto }
             type="submit"
             value="Añadir" 
             />
+            { mensaje && <Mensaje tipo="error">{mensaje}</Mensaje> }
         </form>
-        { mensaje && <Mensaje tipo="error">{mensaje}</Mensaje> }
+        
     </div>
   )
 }
