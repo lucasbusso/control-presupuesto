@@ -12,7 +12,7 @@ function App() {
   const[isValidPresupuesto, setIsValidPresupuesto] = useState(false)
 
   const [modal, setModal] = useState(false)
-  const [animarModal, setAnimarModal] = useState(false )
+  const [animarModal, setAnimarModal] = useState(false)
 
   const [gastos, setGastos] = useState([])
   
@@ -24,11 +24,11 @@ function App() {
   }
 
   const guardarGasto = gasto => {
-    gasto.id = generarId
-    setGastos([... gastos, gasto])
+    gasto.id = generarId(); 
+    gasto.fecha = Date.now();
+    setGastos([...gastos, gasto])
 
-    setAnimarModal(false)
-        
+    setAnimarModal(false)  
         setTimeout(() => {
               setModal(false)
     }, 300);
