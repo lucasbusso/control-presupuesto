@@ -41,6 +41,10 @@ function App() {
   }, [presupuesto])
 
   useEffect(() => {
+    localStorage.setItem('gastos', JSON.stringify(gastos) ?? [])
+  },[gastos])
+
+  useEffect(() => {
     if(filtro){
       const gastosFiltrados = gastos.filter( gasto => gasto.categoria === filtro)
       setGastosFiltrados(gastosFiltrados)
@@ -53,10 +57,6 @@ function App() {
       setIsValidPresupuesto(true)
     }
   },[])
-
-  useEffect(() => {
-    localStorage.setItem('gastos', JSON.stringify(gastos) ?? [])
-  },[gastos])
 
   const handleNuevoGasto = () => {
     setModal(true)
@@ -94,6 +94,7 @@ function App() {
 
      < Header 
         gastos={gastos}
+        setGastos={setGastos}
         presupuesto={presupuesto}
         setPresupuesto={setPresupuesto}
         isValidPresupuesto={isValidPresupuesto}

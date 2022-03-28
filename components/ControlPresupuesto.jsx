@@ -2,19 +2,19 @@ import {useEffect, useState} from 'react'
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar'
 import "react-circular-progressbar/dist/styles.css"
 
-const ControlPresupuesto = ({presupuesto, gastos}) => {
+const ControlPresupuesto = ({gastos, setGastos, presupuesto, setPresupuesto, setIsValidPresupuesto}) => {
   const [porcentaje, setPorcentaje]   = useState(0)
   const [disponible, setDisponible] = useState(0)
   const [gastado, setGastado] = useState(0)
   
   useEffect(() => {
-      const TotalGastado = gastos.reduce( (total, gasto) => gasto.cantidad + total, 0)
+      const totalGastado = gastos.reduce( (total, gasto) => gasto.cantidad + total, 0)
+      const totalDisponible = presupuesto - totalGastado
       
-      const TotalDisponible = presupuesto - TotalGastado
-      const nuevoPorcentaje =( ((presupuesto - TotalDisponible)/presupuesto) *100).toFixed(2);
+      const nuevoPorcentaje =( ((presupuesto - totalDisponible)/presupuesto) *100).toFixed(2);
 
-      setDisponible(TotalDisponible)
-      setGastado(TotalGastado)
+      setDisponible(totalDisponible)
+      setGastado(totalGastado)
       setTimeout(() => {
         setPorcentaje(nuevoPorcentaje)
       }, 1000);
@@ -26,6 +26,15 @@ const ControlPresupuesto = ({presupuesto, gastos}) => {
             currency: 'USD'
         })
     }
+  
+  const handleResetApp = () => {
+    const resultado = confirm('¿Deseas reiniciar presupuesto y gastos?')
+    if (resultado){
+      setGastos([])
+      setPresupuesto(0)
+      setIsValidPresupuesto(false)
+    }
+  }
 
   return (
     <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
@@ -41,6 +50,9 @@ const ControlPresupuesto = ({presupuesto, gastos}) => {
             />
         </div>
         <div className='contenido-presupuesto'>
+          <button className='reset-app' type='button' onClick={handleResetApp}>
+            Borrar presupuesto
+          </button>
             <p>
                 <span>Presupuesto:</span> {formatearCantidad(presupuesto)}
             </p>
